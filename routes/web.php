@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,9 @@ Route::get('/', function () {
 
 Route::resource('/teams', 'App\Http\Controllers\TeamController');
 Route::resource('/players', 'App\Http\Controllers\PlayerController');
+
+Route::get('/login', [AuthController::class, 'showLogin']);
+Route::get('/register', [AuthController::class, 'showRegister']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);

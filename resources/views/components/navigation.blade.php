@@ -14,18 +14,18 @@
                     <a class="nav-link" href="/teams">Teams</a>
                 </li>
 
-                @if (!auth()->user())
+                {{-- @if (!auth()->user()) --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/register">Register</a>
                     </li>
-                @else
+                {{-- @else --}}
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
-                @endif
+                {{-- @endif --}}
         </div>
     </div>
 </nav>
