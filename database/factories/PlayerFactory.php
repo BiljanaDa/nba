@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Player;
+use App\Models\Team;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,18 +11,20 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PlayerFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+   
+    protected $model = Player::class;
+
     public function definition(): array
     {
+
+        $teamIds = Team::pluck('id')->toArray();
+        $randomTeamId = $this->faker->randomElement($teamIds); 
+
         return [
             'first_name' => fake()->word(),
             'last_name' => fake()->word(),
             'email' => fake()->email(),
-            'team_id' => 1
+            'team_id' => $randomTeamId,
         ];
     }
 }

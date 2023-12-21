@@ -1,9 +1,23 @@
-@extends('layout.app')
+@extends('layout.default')
+
+@section('title')
+    {{ $player->first_name }} {{ $player->last_name }}
+@endsection
+
+@section('header-title')
+    {{ $player->first_name }} {{ $player->last_name }}
+@endsection
+
+@section('header-desc')
+    Page for {{ $player->first_name }} {{ $player->last_name }}
+@endsection
 
 @section('content')
-    <h1>Player</h1>
 
-    <p>Full name: {{ $player->full_name }}</p>
+    <div class="blog-post">
+      <h2 class="blog-post-title"><b>Player:</b> {{ $player->full_name }}</h2>
+      <p class="blog-post-meta"><strong>Email: </strong><a href="mailto:{{ $player->email }}">{{ $player->email }}</a></p>
+      <p class="blog-post-meta"><strong>Team:</strong> <a href="/teams/{{ $player->team->id }}">{{ $player->team->name }}</a></p>
+    </div>
 
-    <a href="{{ url("/teams/{$player->team_id}") }}">Team</a>
 @endsection

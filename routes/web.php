@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/teams', 'App\Http\Controllers\TeamController');
+Route::resource('/players', 'App\Http\Controllers\PlayerController');

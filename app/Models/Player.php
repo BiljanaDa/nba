@@ -9,9 +9,9 @@ class Player extends Model
 {
     use HasFactory;
 
-    public function post()
+    public function team()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Team::class, 'team_id');
     }
 
     public function getFullNameAttribute()

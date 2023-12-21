@@ -35,9 +35,11 @@ class PlayerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Player $player)
+    public function show(string $id)
     {
-        return view('pages.players', ['player' => $player]);
+        $player = Player::with('team')->findOrFail($id); // Uzmi i povezani tim za igrača
+
+    return view('pages.players', compact('player'));
     }
 
     /**

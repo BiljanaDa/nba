@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
-            $table->foreignId('team_id')->constrained();
+            $table->unsignedInteger('team_id');
+            // $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }
