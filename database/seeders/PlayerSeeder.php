@@ -14,13 +14,10 @@ class PlayerSeeder extends Seeder
      */
     public static function run(): void
     {
-        $teams = Team::all();
-        foreach ($teams as $team) {
-            $playersCount = Player::where('team_id', $team->id)->count();
-            $remainingPlayers = 5 - $playersCount;
-            if ($remainingPlayers > 0) {
-                Player::factory()->count($remainingPlayers)->create(['team_id' => $team->id]);
-            }
-        }
+        Team::all()->each(function ($team) {
+            Player::factory(5)->create([
+                'team_id' => $team->id
+            ]);
+        });
     }
 }

@@ -8,6 +8,13 @@ use App\Models\Player;
 
 class PlayerController extends Controller
 {
+
+      public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
     /**
      * Display a listing of the resource.
      */
@@ -39,7 +46,7 @@ class PlayerController extends Controller
     {
         $player = Player::with('team')->findOrFail($id); // Uzmi i povezani tim za igrača
 
-    return view('pages.players', compact('player'));
+        return view('pages.players', compact('player'));
     }
 
     /**

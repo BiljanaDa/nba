@@ -12,18 +12,20 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only('logout');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+  
 
     /**
      * Store a newly created resource in storage.
      */
-    public function register(RegisterRequest $request)
+    public function store(RegisterRequest $request)
     {
         User::create([
             'name' => $request->name,
@@ -34,7 +36,7 @@ class AuthController extends Controller
         return redirect('/teams')->with('status', 'Successefully created acount');
     }
 
-    public function login(LoginRequest $request) {
+    public function index(LoginRequest $request) {
         if(Auth::check()) {
             return redirect('/login')->withErrors('You are already logged in');
         }
@@ -72,7 +74,7 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function logout()
+    public function destroy()
     {
         Session::flush();
         Auth::logout();

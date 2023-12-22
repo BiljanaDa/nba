@@ -15,16 +15,8 @@
             <svg class="bi mt-5 mb-3" width="48" height="48">
                 <use xlink:href="#check2-circle" />
             </svg>
-            <h1 class="text-body-emphasis">Welcome
-                {{-- @if (auth()->user())
-                    {{ auth()->user()->name }}
-                @else --}}
-                Guest
-                {{-- @endif --}}
-            </h1>
-            <p class="col-lg-6 mx-auto mb-4">
-                Welcome, to my NBA blog
-            </p>
+            <h1 class="text-body-emphasis">Welcome to my NBA blog</h1>
+           <br>
             <a href="/teams" class="btn btn-primary px-5 mb-5" type="button">
                 Go to teams
             </a>
