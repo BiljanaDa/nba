@@ -14,6 +14,12 @@
             </li>
         @endforeach
     </ul>
+
+    <h4>Comments</h4>
+    @include('components.errors')
+    @include('components.status')
+    @include('components.comment')
+    @include('components.createcomments')
   </div>
 
 @endsection

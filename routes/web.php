@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::resource('/teams', 'App\Http\Controllers\TeamController');
 Route::resource('/players', 'App\Http\Controllers\PlayerController');
 Route::resource('/auth', 'App\Http\Controllers\AuthController');
+Route::resource('comments', 'App\Http\Controllers\CommentsController');
 
 Route::middleware('notauthenticated')->group(function() {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -29,9 +31,11 @@ Route::middleware('notauthenticated')->group(function() {
 
 Route::middleware('authenticated')->group(function() {
     Route::get('/logout', [AuthController::class, 'destroy']);
+    Route::post('/editcomment', [CommentsController::class, 'update']);
 });
 
-
+Route::post('/createcomment', [CommentsController::class, 'store']);
+Route::get('/deletecomment/{id}', [CommentsController::class, 'destroy']);
 // Route::post('/register', [AuthController::class, 'register']);
 // Route::post('/login', [AuthController::class, 'login']);
 

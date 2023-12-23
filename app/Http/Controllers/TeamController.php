@@ -45,7 +45,7 @@ class TeamController extends Controller
      */
     public function show(string $id)
     {
-        $team = Team::findOrFail($id);
+        $team = Team::with('comments')->find($id);
         return view('pages.team', compact('team'));
     }
 
