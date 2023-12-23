@@ -27,6 +27,7 @@ Route::resource('comments', 'App\Http\Controllers\CommentsController');
 Route::middleware('notauthenticated')->group(function() {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::get('/register', [AuthController::class, 'showRegister']);
+    Route::get('/verify/{verify_string}', [AuthController::class, 'verify']);
 });
 
 Route::middleware('authenticated')->group(function() {
@@ -36,6 +37,7 @@ Route::middleware('authenticated')->group(function() {
 
 Route::post('/createcomment', [CommentsController::class, 'store']);
 Route::get('/deletecomment/{id}', [CommentsController::class, 'destroy']);
+
 // Route::post('/register', [AuthController::class, 'register']);
 // Route::post('/login', [AuthController::class, 'login']);
 
