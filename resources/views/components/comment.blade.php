@@ -5,7 +5,10 @@
         <input type="hidden" value="{{ $comment->id }}" name="id" />
         <textarea name="content" {{ auth()->user()->id !== $comment->user_id ? 'disabled' : 'required' }} rows="3"
             cols="10" style="width: 100%">{{ $comment->content }}</textarea>
-        <a href="/deletecomment/{{ $comment->id }}" class="btn btn-danger">Delete</a>
-        <button type="submit" class="btn btn-primary">Update</button>
+        
+        @if(auth()->user()->id === $comment->user_id)
+            <a href="/deletecomment/{{ $comment->id }}" class="btn btn-danger">Delete</a>
+            <button type="submit" class="btn btn-primary">Update</button>
+        @endif
     </form>
 @endforeach

@@ -20,6 +20,7 @@
     @include('components.status')
     @include('components.comment')
     @include('components.createcomments')
+    {{-- @include('components.forbidden-comment') --}}
   </div>
 
 @endsection

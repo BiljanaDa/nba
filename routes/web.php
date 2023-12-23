@@ -38,6 +38,9 @@ Route::middleware('authenticated')->group(function() {
 Route::post('/createcomment', [CommentsController::class, 'store']);
 Route::get('/deletecomment/{id}', [CommentsController::class, 'destroy']);
 
+
+
+
 // Route::post('/register', [AuthController::class, 'register']);
 // Route::post('/login', [AuthController::class, 'login']);
 

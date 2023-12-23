@@ -44,7 +44,7 @@ class PlayerController extends Controller
      */
     public function show(string $id)
     {
-        $player = Player::with('team')->findOrFail($id); // Uzmi i povezani tim za igrača
+        $player = Player::with('team')->findOrFail($id); 
 
         return view('pages.players', compact('player'));
     }

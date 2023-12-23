@@ -67,6 +67,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'authenticated' => AuthMiddleware::class,
-        'notauthenticated' => NotAuthMiddleware::class
+        'notauthenticated' => NotAuthMiddleware::class,
+        'forbidden-comment' => \App\Http\Middleware\ForbiddenCommentMiddleware::class,
     ];
+
 }

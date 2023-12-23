@@ -92,6 +92,10 @@ class AuthController extends Controller
      */
     public function destroy()
     {
+        Session::flush();
+        Auth::logout();
+
+        return redirect('/')->with('status', 'Logged out!');
     }
 
     public function verify(string $string)

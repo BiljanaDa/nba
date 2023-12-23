@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('forbidden-comment')->only('store');
+    }
     /**
      * Display a listing of the resource.
      */
