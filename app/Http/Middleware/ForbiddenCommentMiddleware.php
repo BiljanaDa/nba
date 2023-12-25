@@ -13,22 +13,22 @@ class ForbiddenCommentMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    
-     public function handle(Request $request, Closure $next)
-     {
-         $forbidden_words = [
-             'hate',
-             'stupid',
-             'idiot',
-         ];
- 
-         foreach ($forbidden_words as $word) {
-             if(strstr($request->content, $word)) {
+
+    public function handle(Request $request, Closure $next)
+    {
+        $forbiddenWords = [
+            'hate',
+            'stupid',
+            'idiot',
+        ];
+
+        foreach ($forbiddenWords as $word) {
+            if (strstr($request->content, $word)) {
                 return response(view('pages.forbidden-comment'));
-             }
-         }
- 
-         return $next($request);
- 
-     }
+            }
+        }
+
+        return $next($request);
+
+    }
 }

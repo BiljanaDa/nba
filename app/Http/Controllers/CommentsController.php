@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
+use App\Mail\CommentReceived;
 use App\Models\Comment;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CommentsController extends Controller
 {
@@ -29,7 +31,7 @@ class CommentsController extends Controller
      */
     public function store(CommentRequest $request)
     {
-        if(!Auth::check()) {
+        if (!Auth::check()) {
             return redirect('/teams/' . $request->team_id)->withErrors('Only authenticated user can post comments');
         }
 
@@ -41,10 +43,11 @@ class CommentsController extends Controller
             'content' => $request->content,
             'user_id' => $user->id,
             'team_id' => $request->team_id,
-            
+
         ]);
 
-    
+        $mailData = $comment->only('content');
+        Mail::to($team->email)->send(new CommentReceived($mailData));
 
         return redirect('/teams/' . $team->id)->with('status', 'Comment successfully created!');
     }
@@ -66,20 +69,20 @@ class CommentsController extends Controller
             'id' => 'required|exists:comments,id',
             'content' => 'required|min:10'
         ]);
-    
+
         $comment = Comment::find($request->id);
-    
-      
+
+
         if (!$comment) {
             return redirect()->back()->withErrors('Comment not found.');
         }
-    
-    
+
+
         $comment->content = $request->content;
         $comment->save();
 
         return redirect()->back()->with('status', 'Comment successfully updated!');
-    
+
     }
 
     /**
@@ -91,7 +94,7 @@ class CommentsController extends Controller
         if (Auth::id() !== $comment->user_id) {
             return redirect()->back()->withErrors('Only creator of the comment can delete comment.');
         }
-        
+
         $comment->destroy($id);
         return redirect()->back()->with('success', 'Comment is successfully deleted.');
     }
