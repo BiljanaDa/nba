@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         TeamSeeder::run();
         PlayerSeeder::run();
+        NewsSeeder::run();
     }
 }
