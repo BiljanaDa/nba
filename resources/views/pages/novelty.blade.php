@@ -11,6 +11,13 @@
         <div>
             <p class="blog-post-meta">By <a href="#"></a> on {{ $novelty->created_at }}</p>
             <p>{{ $novelty->content }}</p>
+            <ul>
+                @foreach ($novelty->teams as $team)
+                    <li>
+                        <a href="{{ route('news.team', ['team' => $team->name]) }}">{{ $team->name }}</a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </main><!-- /.container -->
 @endsection

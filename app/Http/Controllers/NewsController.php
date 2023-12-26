@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -10,12 +11,23 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Team $team)
     {
+    {
+        $news = News::paginate(5);
+        $news = [];
 
-        $news = News::with('user')->paginate(5);
+
+        info($news);
+        if ($team->id) {
+            $news = $team->news()->paginate(5);
+        } else {
+            $news = News::paginate(5);
+        }
+
 
         return view("pages.news", compact("news"));
+    }
     }
 
     /**

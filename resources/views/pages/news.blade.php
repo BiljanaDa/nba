@@ -22,4 +22,5 @@
         {{ $news->links() }}
     </main><!-- /.container -->
 @endsection
+
 {{-- {{ $novelty->user->name }} --}}
