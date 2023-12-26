@@ -40,7 +40,12 @@ Route::middleware('authenticated')->group(function () {
 Route::post('/createcomment', [CommentsController::class, 'store']);
 Route::get('/deletecomment/{id}', [CommentsController::class, 'destroy']);
 
-Route::get('news/teams/{team}', [NewsController::class, 'show'])->name('news.team');
+Route::get('news/{team}', [NewsController::class, 'showNewsForTeam'])->name('news/team');
+
+Route::get('/createnews', [NewsController::class, 'store']);
+Route::post('/createnews', [NewsController::class, 'store']);
+
+
 
 
 // Route::get('/news', [NewsController::class, 'index']);

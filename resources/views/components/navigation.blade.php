@@ -10,6 +10,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/news">News</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/createnews">Create news</a>
+            </li>
             @if (!auth()->check())
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Sign in</a>
